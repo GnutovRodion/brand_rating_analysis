@@ -61,5 +61,7 @@ if __name__ == "__main__":
         output_report(args)
     except FileNotFoundError as exc:
         print(f"Ошибка: {exc}")
+    except ValueError as exc:
+        print(f"Ошибка: {exc}")
     except Exception as exc:
         print(f"Возникла непредвиденная ошибка: {exc}")
