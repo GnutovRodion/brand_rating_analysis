@@ -15,7 +15,7 @@ python -m app.main --files {CSV-файлы для обработки} --report {
 
 Пример:
 
-python -m app.main --files data/students1.csv data/students2.csv --report students-performance
+`python -m app.main --files data/students1.csv data/students2.csv --report students-performance`
 
 Скриншоты запуска скрипта в директории screenshots.
 
