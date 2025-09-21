@@ -11,11 +11,11 @@
 
 Находясь в корневой директории проекта, выполните команду:
 
-python -m app.main --files {CSV-файлы для обработки} --report {название отчета}
+`python -m app.main --files {CSV-файлы для обработки} --report {название отчета}`
 
 Пример:
 
-```python -m app.main --files data/students1.csv data/students2.csv --report students-performance```
+`python -m app.main --files data/students1.csv data/students2.csv --report students-performance`
 
 Скриншоты запуска скрипта в директории screenshots.
 
@@ -33,7 +33,7 @@ python -m app.main --files {CSV-файлы для обработки} --report {
 
 Находясь в корневой директории, выполните команду:
 
-pytest
+`pytest`
 
 ### Зависимости
 
@@ -45,7 +45,7 @@ pytest
 
 Для создания виртуального окружения и установки зависимостей выполните из корневой директории команду:
 
-poetry install
+`poetry install`
 
 ### Автор
 
