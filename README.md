@@ -17,7 +17,7 @@ python -m app.main --files {CSV-файлы для обработки} --report {
 
 python -m app.main --files data/students1.csv data/students2.csv --report students-performance
 
-Скиншоты запуска скрипта в директории screenshots.
+Скриншоты запуска скрипта в директории screenshots.
 
 ### Пример отчета
 
