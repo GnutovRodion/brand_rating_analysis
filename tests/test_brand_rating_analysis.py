@@ -1,4 +1,4 @@
-def test_output_report_grade(output_data_rating: list[str]) -> None:
+def test_output_report_rating(output_data_rating: list[str]) -> None:
     """
     Тест корректности содержания отчета рейтинга брендов.
     """
@@ -17,27 +17,27 @@ def test_output_report_grade(output_data_rating: list[str]) -> None:
     column = [
         col.strip() for col in output_data_rating[3].split("|") if col.strip()
     ]
-    student_record = dict(zip(headers, column[1:]))
+    rating_brand = dict(zip(headers, column[1:]))
 
     assert (
-        student_record["brand"] == "xiaomi"
+        rating_brand["brand"] == "xiaomi"
     ), "Содержание отчета не соответствует структуре."
     assert (
-        student_record["rating"] == "4.6"
+        rating_brand["rating"] == "4.6"
     ), "Средний рейтинг бренда не соответсвует ожидаемому."
 
 
-def test_ordering_grades(output_data_rating: list[str]) -> None:
+def test_ordering_ratings(output_data_rating: list[str]) -> None:
     """
     Тест сортировки записей в отчете рейтингов брендов.
     """
 
-    grades = []
+    ratings = []
 
     for line in output_data_rating[2:]:
         columns = [col.strip() for col in line.split("|") if col.strip()]
-        grades.append(float(columns[2]))
+        ratings.append(float(columns[2]))
 
     assert (
-        grades == sorted(grades, reverse=True)
+        ratings == sorted(ratings, reverse=True)
     ), "Записи должны быть отсортированы по убыванию среднего рейтинга бренда."
