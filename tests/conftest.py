@@ -1,25 +1,18 @@
-import csv
+from argparse import Namespace
+
 import pytest
 
-from app.utils import StudentRecord
+from app.generators_reports import GeneratorReportRating
 
 
 @pytest.fixture(scope="session")
-def get_test_data() -> list[StudentRecord]:
+def output_data_rating() -> list[str]:
     """
-    Фикстура для парсинга тестовых данных в унифицированную структуру.
+    Фикстура для подготовки тестовых данных из генератора отчетов.
     """
-    test_data = []
-
-    with open("tests/test_data.csv", "r", encoding="utf-8") as test_file:
-        reader = csv.DictReader(test_file)
-        for row in reader:
-            test_data.append(StudentRecord(
-                    student_name=row["student_name"],
-                    subject=row["subject"],
-                    teacher_name=row["teacher_name"],
-                    date=row["date"],
-                    grade=float(row["grade"])
-                ))
-
-    return test_data
+    args = Namespace(
+        files=["tests/test_data.csv"],
+        report="average-rating"
+    )
+    output = GeneratorReportRating(args).generate_report()
+    return output.splitlines()

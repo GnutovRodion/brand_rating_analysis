@@ -1,41 +1,18 @@
 import os
-
-from argparse import Namespace, ArgumentParser
+from argparse import Namespace
 from typing import Callable
 
-from app.utils import get_data, generate_report_grade
+from app.parser import get_parser_args
+from app.generators_reports import GeneratorReportRating
 
 
+# Словарь с доступными отчетами и классами для их формирования
 REPORTS: dict[str, Callable] = {
-    "students-performance": generate_report_grade
+    "average-rating": GeneratorReportRating
 }
 
 
-def get_parser_args() -> Namespace:
-    """
-    Получение аргументов из командной строки.
-    """
-    parser = ArgumentParser(description="Parser_csv")
-
-    parser.add_argument(
-        "--files",
-        nargs="+",
-        type=str,
-        required=True,
-        help="List of CSV files to process"
-    )
-
-    parser.add_argument(
-        "--report",
-        type=str,
-        required=True,
-        help="Type of report to generate"
-    )
-
-    return parser.parse_args()
-
-
-def output_report(args: Namespace) -> None:
+def main(args: Namespace) -> None:
     """
     Выводит необходимый отчет, указанный в командной строке.
     """
@@ -51,17 +28,12 @@ def output_report(args: Namespace) -> None:
                 "Попробуйте указать полный путь."
             )
 
-    records = get_data(args)
-    print(REPORTS[report_type](records))
+    print(REPORTS[report_type](args).generate_report())
 
 
 if __name__ == "__main__":
     try:
         args = get_parser_args()
-        output_report(args)
-    except FileNotFoundError as exc:
-        print(f"Ошибка: {exc}")
-    except ValueError as exc:
-        print(f"Ошибка: {exc}")
+        main(args)
     except Exception as exc:
         print(f"Возникла непредвиденная ошибка: {exc}")
